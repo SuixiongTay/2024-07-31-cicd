@@ -22,7 +22,7 @@ jobs:
     steps: 
       - id: step1
         run: echo "myvar=42" >> $GITHUB_ENV
-      - run: echo $myvar
+      #- run: echo $myvar
       #- run: echo ${{ env.myvar }}
       - run: echo ${{ steps.step1.outputs.myvar }}
       #- run: echo Hello World # specific the command that you want to run
@@ -44,4 +44,5 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     steps:
-      - run: echo "Deploy job"
+      #- run: echo "Deploy job"
+      - run: echo "Deploy job ${{ needs.test.steps.step1.output.myvar }}"
