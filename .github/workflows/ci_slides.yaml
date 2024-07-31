@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       #- id: step1 
-        #uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v5 # install a specific python version
         with:
@@ -20,6 +20,9 @@ jobs:
         run: pip install git+https://gitlab.com/da_doomer/markdown-slides.git
       - name: Generate slides
         run: mdslides slides.md --output_dir slides
+      - uses: actions/upload-pages-artifact
+        with:
+          path: ./slides
 
   deploy:
     if: github.event_name == 'push'
@@ -27,5 +30,4 @@ jobs:
     needs: test
     steps:
       - run: echo "Deploy job"
-      - uses: actions/upload-pages-artifact
       - uses: actions/deploy-pages
