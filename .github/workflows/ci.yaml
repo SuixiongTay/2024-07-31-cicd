@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  tests:
+  test:
     name: Run tests
     runs-on: ubuntu-latest # machine that runs on
     steps: 
