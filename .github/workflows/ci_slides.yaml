@@ -8,10 +8,14 @@ jobs:
     name: Publishing slides
   runs-on: ubuntu-latest
   steps: 
-    - id: step1 
-    - uses: actions/checkout@v4
-    - uses: actions/setup-python@v5 # install a specific python version
-    - run: markdown-slides from {{ "https://gitlab.com/da_doomer/markdown-slides" }}
+    #- id: step1 
+      #uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5 # install a specific python version
+      with:
+        python-version: "3.11"
+    - name: Install markdown slides
+    - run: pip install git+https://gitlab.com/da_doomer/markdown-slides
 
   deploy:
     if: github.event_name == 'push'
