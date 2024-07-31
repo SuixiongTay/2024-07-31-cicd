@@ -1,5 +1,5 @@
 on:
-  pull-requests:
+  pull-request:
   push:
     branchs:
       - main
