@@ -1,0 +1,23 @@
+on:
+  pull-requests:
+  push:
+    branchs:
+
+jobs:
+  test:
+    name: Publishing slides
+  runs-on: ubuntu-latest
+  steps: 
+    - id: step1 
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5 # install a specific python version
+    - run: markdown-slides from {{ "https://gitlab.com/da_doomer/markdown-slides" }}
+
+  deploy:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - run: echo "Deploy job"
+      - uses: actions/upload-pages-artifact
+      - uses: actions/deploy-pages
