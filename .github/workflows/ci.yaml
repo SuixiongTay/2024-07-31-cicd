@@ -3,6 +3,8 @@ name: Our CI
 on: 
   pull_request:
   push:
+    branchs:
+      - master
   workflow_dispatch:
 
 jobs:
